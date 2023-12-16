@@ -1,0 +1,4 @@
+ifaddr==0.2.0
+paho-mqtt==1.6.1
+websocket-client==1.7.0
+zeroconf==0.129.0

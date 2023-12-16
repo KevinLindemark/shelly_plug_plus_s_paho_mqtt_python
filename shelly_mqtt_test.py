@@ -15,8 +15,12 @@ mqttClient.connect('192.168.1.153', 1883)
 # start a new thread
 mqttClient.loop_start()
 
-mqttClient.subscribe('shellies/shellyplusplugs-d4d4dae8639c/')
+mqttClient.subscribe('shellyplusplugs-d4d4dae8639c/events/rpc')
 
+# a callback function
+def on_message(client, userdata, msg):
+    print('Received data ', msg.payload.decode('utf-8'))
+mqttClient.message_callback_add('shellyplusplugs-d4d4dae8639c/events/rpc', on_message)
 # https://shelly-api-docs.shelly.cloud/gen2/General/RPCChannels#MQTT
 # publish this to turn switch on or change true to false to turn off
 # {"id":123, "src":"user_1", "method":"Switch.Set", "params":{"id":0,"on":true}}
